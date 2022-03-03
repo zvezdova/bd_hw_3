@@ -1,0 +1,51 @@
+CREATE TABLE IF NOT EXISTS Genre 
+(
+    id integer NOT NULL IDENTITY PRIMARY KEY,
+    title_genre varchar(100)   
+);
+
+CREATE TABLE IF NOT EXISTS Artist 
+(
+    id integer NOT NULL IDENTITY PRIMARY KEY,
+    alias varchar(100)      
+);
+
+CREATE TABLE IF NOT EXISTS GenreArtist 
+(    
+    id_genre integer NOT NULL REFERENCES Genre(id),
+    id_artist integer NOT NULL REFERENCES Artist(id),
+    constraint pk primary key (id_genre, id_artist)
+);
+
+CREATE TABLE IF NOT EXISTS Album 
+(
+   id integer NOT NULL IDENTITY PRIMARY KEY,
+   title_album varchar(100) NOT NULL,
+   release_year integer NOT NULL     
+);
+
+CREATE TABLE IF NOT EXISTS ArtistAlbum 
+(
+    id integer NOT NULL IDENTITY PRIMARY KEY,    
+    id_album integer NOT NULL REFERENCES Album(id),
+    id_artist integer NOT NULL REFERENCES Artist(id),    
+);
+
+
+CREATE TABLE IF NOT EXISTS Trak 
+(
+    id integer NOT NULL IDENTITY PRIMARY KEY,
+    title_trak varchar(100) NOT NULL,
+    duration integer NOT NULL,
+    id_album integer NOT NULL REFERENCES Album(id)   
+);
+
+CREATE TABLE IF NOT EXISTS Collection 
+(
+    id integer NOT NULL IDENTITY PRIMARY KEY,
+    title_collection varchar(100) NOT NULL,
+    release_year integer NOT NULL,  
+    id_trak integer NOT NULL REFERENCES Trak(id)      
+);
+
+
