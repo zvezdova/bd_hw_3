@@ -48,4 +48,9 @@ CREATE TABLE IF NOT EXISTS Collection
     id_trak integer NOT NULL REFERENCES Trak(id)      
 );
 
-
+CREATE TABLE IF NOT EXISTS TrakCollection 
+(   
+    id integer NOT NULL IDENTITY PRIMARY KEY, 
+    id_trak integer NOT NULL REFERENCES Trak(id),
+    id_collection integer NOT NULL REFERENCES Collection(id),
+);
